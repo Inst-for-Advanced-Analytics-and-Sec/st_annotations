@@ -22,8 +22,16 @@ df = get_data()
 annotation_data = df[[isinstance(x, dict) for x in df['properties.metadata.tags']]]
 
 # Add keys for mp4 videos (just for testing)
+
+# annotation_data['properties.metadata.S3Key'].iloc[3] = "EX1708/EX1708_VID_20170921T220500Z_ROVHD_Low.mp4" # for testing
+# annotation_data['properties.metadata.S3Key'].iloc[11] = "EX1708/EX1708_DIVE15_20170921/Compressed/EX1708_VID_20170921T181500Z_CPHD_Low.mp4" # for testing
+# annotation_data['properties.metadata.S3Key'].iloc[12] = "EX1708/EX1708_DIVE15_20170921/Compressed/EX1708_VID_20170921T181500Z_ROVHD_Low.mp4" # for testing
+# annotation_data['properties.metadata.S3Key'].iloc[13] = "EX1708/EX1708_DIVE15_20170921/Compressed/EX1708_VID_20170921T184000Z_CPHD_Low.mp4" # for testing
+# annotation_data['properties.metadata.S3Key'].iloc[14] = "EX1708/EX1708_DIVE15_20170921/Compressed/EX1708_VID_20170921T184000Z_ROVHD_Low.mp4" # for testing
+# annotation_data['properties.metadata.S3Key'].iloc[15] = "EX1708/EX1708_DIVE15_20170921/Compressed/EX1708_VID_20170921T184500Z_CPHD_Low.mp4" # for testing
 # annotation_data['properties.metadata.S3Key'].iloc[3] = "EX1708/EX1708_VID_20170921T220500Z_ROVHD_Low.mp4" # for testing
 # annotation_data['properties.metadata.S3Key'].iloc[11] = "EX1708/EX1708_VID_20170921T220500Z_ROVHD_Low.mp4" # for testing
+
 
 # Limit to mp4 files
 videos = annotation_data[annotation_data['properties.metadata.S3Key'].str.contains(".mp4")]

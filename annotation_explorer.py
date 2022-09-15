@@ -36,7 +36,7 @@ tag_columns = pd.json_normalize(for_image_tag_counts['properties.metadata.tags']
 tag_table = tag_columns.sum(axis=0)
 tag_table_2 = pd.DataFrame(tag_table)
 tag_table_2.columns = ["Count"]
-rounded_tags = tag_table_2.round(1)
+rounded_tags = tag_table_2.astype(int)
 
 # Plot Markdown & Image
 intro_markdown = read_markdown_file("overview.md")
