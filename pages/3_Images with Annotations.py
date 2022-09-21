@@ -50,7 +50,7 @@ image_choice = st.sidebar.number_input("Which Image?", min_value=0, max_value=le
 TINT_COLOR = (0, 255, 0)  # Green
 TRANSPARENCY = .25  # Degree of transparency, 0-100%
 OPACITY = int(255 * TRANSPARENCY)
-st.text(os.getcwd())
+
 try:    
     response = requests.get(image_list[image_choice])
     image = Image.open(BytesIO(response.content))
@@ -69,7 +69,8 @@ try:
                     anno['objects'][obj]['bbox']['width'],
                     anno['objects'][obj]['bbox']['height']]
             draw.rectangle(((bbox[0]-bbox[2]/2, bbox[1]-bbox[3]/2), (bbox[0]+bbox[2]/2, bbox[1]+bbox[3]/2)), fill=TINT_COLOR+(OPACITY,))
-            draw.text((bbox[0]-bbox[2]/2, bbox[1]-bbox[3]/2-50), label, font = ImageFont.truetype("arial.ttf", 50))
+            draw.text((bbox[0]-bbox[2]/2, bbox[1]-bbox[3]/2-50), label, 
+                      font = ImageFont.truetype(os.path.join(os.getcwd(), 'font', 'arial.ttf'), 50))
     st.image(Image.alpha_composite(image.convert('RGBA'), overlay))
 except:
     st.text("Try Another Image")
