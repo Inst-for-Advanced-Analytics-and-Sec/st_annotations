@@ -9,7 +9,7 @@ user = 'bausdenmoore'
 password = 'KBfV0wXEgDYXEnNh'
 
 clientString = ['mongodb+srv://' + user + ':' + password + '@clustersaptest.i1ivo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority']
-client = pm.MongoClient(clientString, ssl=False, ssl_cert_reqs='CERT_NONE')
+client = pm.MongoClient(clientString)
 mydb = client["AquaView"]
 AnnotationCol = mydb["Annotations"]
 
