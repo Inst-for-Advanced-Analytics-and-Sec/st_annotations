@@ -22,7 +22,7 @@ st.title('Image w/ Annotation Display')
 tag_choice = st.sidebar.multiselect("Tags", options=["Aaptos aaptos", "Corallis polyporum",
                                                    "Hypodytes carinatus", "Lichen ater",
                                                    "Lydia annulipes", "Poritella decidua",
-                                                   "Verrucula maritimaria", "Blastomussa omanesis"])
+                                                   "Verrucula maritimaria", "Blastomussa omanensis"])
 image_list = []
 image_id = []
 annotation_list = []
