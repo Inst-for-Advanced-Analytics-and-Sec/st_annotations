@@ -51,26 +51,23 @@ TINT_COLOR = (0, 255, 0)  # Green
 TRANSPARENCY = .25  # Degree of transparency, 0-100%
 OPACITY = int(255 * TRANSPARENCY)
 
-try:    
-    response = requests.get(image_list[image_choice])
-    image = Image.open(BytesIO(response.content))
+   
+response = requests.get(image_list[image_choice])
+image = Image.open(BytesIO(response.content))
+
+overlay = Image.new('RGBA', image.size, TINT_COLOR+(0,))
+draw = ImageDraw.Draw(overlay)  # Create a context for drawing things on it.
     
-    overlay = Image.new('RGBA', image.size, TINT_COLOR+(0,))
-    draw = ImageDraw.Draw(overlay)  # Create a context for drawing things on it.
-    
-    
-    for anno in annotation_list[image_choice]:
-        for obj in anno['objects']:
-            genus = anno['objects'][obj]['label']['genus']
-            species = anno['objects'][obj]['label']['species']
-            instanceId = anno['objects'][obj]['label']['instance_id']
-            label = f'{genus} {species} ({instanceId})'
-            bbox = [anno['objects'][obj]['bbox']['x'],
-                    anno['objects'][obj]['bbox']['y'],
-                    anno['objects'][obj]['bbox']['width'],
-                    anno['objects'][obj]['bbox']['height']]
-            draw.rectangle(((bbox[0]-bbox[2]/2, bbox[1]-bbox[3]/2), (bbox[0]+bbox[2]/2, bbox[1]+bbox[3]/2)), fill=TINT_COLOR+(OPACITY,))
-            draw.text((bbox[0]-bbox[2]/2, bbox[1]-bbox[3]/2-50), label, font = ImageFont.truetype("arial.ttf", 50))
-    st.image(Image.alpha_composite(image.convert('RGBA'), overlay))
-except:
-    st.text("Try Another Image")
+for anno in annotation_list[image_choice]:
+    for obj in anno['objects']:
+        genus = anno['objects'][obj]['label']['genus']
+        species = anno['objects'][obj]['label']['species']
+        instanceId = anno['objects'][obj]['label']['instance_id']
+        label = f'{genus} {species} ({instanceId})'
+        bbox = [anno['objects'][obj]['bbox']['x'],
+                anno['objects'][obj]['bbox']['y'],
+                anno['objects'][obj]['bbox']['width'],
+                anno['objects'][obj]['bbox']['height']]
+        draw.rectangle(((bbox[0]-bbox[2]/2, bbox[1]-bbox[3]/2), (bbox[0]+bbox[2]/2, bbox[1]+bbox[3]/2)), fill=TINT_COLOR+(OPACITY,))
+        draw.text((bbox[0]-bbox[2]/2, bbox[1]-bbox[3]/2-50), label, font = ImageFont.truetype("arial.ttf", 50))
+st.image(Image.alpha_composite(image.convert('RGBA'), overlay))
