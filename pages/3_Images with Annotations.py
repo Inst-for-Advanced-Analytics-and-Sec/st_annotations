@@ -27,16 +27,18 @@ image_list = []
 image_id = []
 annotation_list = []
 
-init_ann_res = requests.get("http://18.232.136.117:5000/api/noaa/annotations")
-annotations_text = init_ann_res.text
-annotations_json = json.loads(annotations_text)
-annotations_flat = pd.json_normalize(annotations_json['features'], max_level=2)
-annotations_final = annotations_flat
-df = annotations_final
+# init_ann_res = requests.get("http://18.232.136.117:5000/api/noaa/annotations")
+# annotations_text = init_ann_res.text
+# annotations_json = json.loads(annotations_text)
+# annotations_flat = pd.json_normalize(annotations_json['features'], max_level=2)
+# annotations_final = annotations_flat
+# df = annotations_final
+
+df_2 = get_data()
 
 # Limit to proper dictionaries
 for i in tag_choice:
-    annotation_data =df[[isinstance(x, dict) and (i in x.keys()) for x in df['properties.metadata.tags']]]
+    annotation_data =df_2[[isinstance(x, dict) and (i in x.keys()) for x in df_2['properties.metadata.tags']]]
     # Limit to jpegs
     images = annotation_data[annotation_data['properties.metadata.S3Key'].str.contains(".JPG")]
 
