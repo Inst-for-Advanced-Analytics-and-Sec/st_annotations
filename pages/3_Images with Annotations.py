@@ -69,5 +69,6 @@ for anno in annotation_list[image_choice]:
                 anno['objects'][obj]['bbox']['width'],
                 anno['objects'][obj]['bbox']['height']]
         draw.rectangle(((bbox[0]-bbox[2]/2, bbox[1]-bbox[3]/2), (bbox[0]+bbox[2]/2, bbox[1]+bbox[3]/2)), fill=TINT_COLOR+(OPACITY,))
-        draw.text((bbox[0]-bbox[2]/2, bbox[1]-bbox[3]/2-50), label, font = ImageFont.truetype("arial.ttf", 50))
+        draw.text((bbox[0]-bbox[2]/2, bbox[1]-bbox[3]/2-50), label, 
+                  font = ImageFont.truetype("/usr/share/fonts/truetype/arial.ttf", 50))
 st.image(Image.alpha_composite(image.convert('RGBA'), overlay))
