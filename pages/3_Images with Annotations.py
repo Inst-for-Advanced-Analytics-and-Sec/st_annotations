@@ -44,7 +44,7 @@ for i in tag_choice:
             }
         annotation_list.append([AnnotationCol.find_one(queryString)])
         
-st.sidebar(st.text(f'Total Images: {len(image_list)}'))
+st.sidebar.text(f'Total Images: {len(image_list)}')
 image_choice = st.sidebar.number_input("Which Image?", min_value=0, max_value=len(image_list))
 
 # Plot images
