@@ -9,7 +9,7 @@ st.set_page_config(
     page_title="Annotation Explorer")
 
 # Define the function to pull annotation data
-@st.cache
+
 def get_data():
     init_ann_res = requests.get("http://18.232.136.117:5000/api/noaa/annotations")
     annotations_text = init_ann_res.text

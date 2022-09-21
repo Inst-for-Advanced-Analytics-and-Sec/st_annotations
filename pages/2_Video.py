@@ -9,20 +9,14 @@ import pandas as pd
 # Set page title
 st.title("Video")
 
-# Create dropdown for tags
-# tag_choice = st.sidebar.selectbox("Tags", options=["Aaptos aaptos", "Corallis polyporum",
-#                                                    "Hypodytes carinatus", "Lichen ater",
-#                                                    "Lydia annulipes", "Poritella decidua",
-#                                                    "Verrucula maritimaria"])
-
 # Get data
 df = get_data()
+
 
 # Limit to proper dictionaries
 annotation_data = df[[isinstance(x, dict) for x in df['properties.metadata.tags']]]
 
 # Add keys for mp4 videos (just for testing)
-
 # annotation_data['properties.metadata.S3Key'].iloc[3] = "EX1708/EX1708_VID_20170921T220500Z_ROVHD_Low.mp4" # for testing
 # annotation_data['properties.metadata.S3Key'].iloc[11] = "EX1708/EX1708_DIVE15_20170921/Compressed/EX1708_VID_20170921T181500Z_CPHD_Low.mp4" # for testing
 # annotation_data['properties.metadata.S3Key'].iloc[12] = "EX1708/EX1708_DIVE15_20170921/Compressed/EX1708_VID_20170921T181500Z_ROVHD_Low.mp4" # for testing
