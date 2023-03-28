@@ -11,7 +11,7 @@ st.set_page_config(
 # Define the function to pull annotation data
 
 def get_data():
-    init_ann_res = requests.get("http://18.232.136.117:5000/api/noaa/annotations")
+    init_ann_res = requests.get("http://34.227.61.39:5000/api/noaa/annotations")
     annotations_text = init_ann_res.text
     annotations_json = json.loads(annotations_text)
     annotations_flat = pd.json_normalize(annotations_json['features'], max_level=2)
@@ -46,3 +46,7 @@ st.image("application_diagram.png")
 # Plot table of tag counts
 st.write("This is the current set of tags along with the number of times they appear in the data.")
 st.table(rounded_tags)
+
+# TODO: Re-create UI/DST within streamlit
+# TODO: Create overlay for video annotations
+# TODO: Figure out how to demo some kind of auto-annotation.
