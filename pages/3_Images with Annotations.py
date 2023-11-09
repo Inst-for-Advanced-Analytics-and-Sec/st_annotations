@@ -7,8 +7,8 @@ from PIL import Image, ImageDraw, ImageFont
 import json
 import pandas as pd
 
-user = 'bausdenmoore'
-password = 'KBfV0wXEgDYXEnNh'
+user = 'josh'
+password = '46mYMuDOMXGZrbWu'
 
 clientString = ['mongodb+srv://' + user + ':' + password + '@clustersaptest.i1ivo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority']
 client = pm.MongoClient(clientString)#, ssl=True, ssl_cert_reqs='CERT_NONE')
